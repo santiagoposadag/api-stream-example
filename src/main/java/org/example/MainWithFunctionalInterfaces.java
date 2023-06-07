@@ -10,7 +10,7 @@ import java.util.function.Supplier;
 import java.util.stream.Collectors;
 
 public class MainWithFunctionalInterfaces {
-    public Supplier<List<Student>> studentsSupplier = () -> {
+    public static Supplier<List<Student>> studentsSupplier = () -> {
         Student santiago = new Student("Santiago", "Calculo", List.of(5,8,9,5,7,8,9,5));
         Student pablo = new Student("pablo", "fisica", List.of(6,5,9,10,7,6));
         Student valentina = new Student("valentina", "Calculo", List.of(8,9,7,9,10,7));
@@ -21,9 +21,9 @@ public class MainWithFunctionalInterfaces {
         return new ArrayList<>(List.of(santiago, pablo, valentina, leonardo, juan, melissa));
     };
 
-    public Consumer<Student> studentPrinter = (student) -> System.out.println(student);
+    public static Consumer<Student> studentPrinter = (student) -> System.out.println(student);
 
-    public Function<List<Student>, Set<Student>> studentsAutoComplete = (List<Student> students) -> {
+    public static Function<List<Student>, Set<Student>> studentsAutoComplete = (List<Student> students) -> {
         return students.stream().map(student -> {
             Student newStudent = new Student(student.getName(), student.getCourse(), student.getGrades());
             int numberOfGrades = student.getGrades().size();
@@ -34,7 +34,7 @@ public class MainWithFunctionalInterfaces {
         }).collect(Collectors.toSet());
     };
 
-    public Predicate<Student> gradeValidator = student -> student.getAverage() > 7.5 ;
+    public static Predicate<Student> gradeValidator = student -> student.getAverage() > 7.5 ;
 
 
 }
